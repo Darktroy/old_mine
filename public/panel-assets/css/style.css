@@ -1,0 +1,19 @@
+.title_left h3 {
+    text-transform: capitalize;
+}
+
+.view .mask{
+    bottom: 0;
+}
+
+.view .tools{
+    margin: 0;
+    position: relative;
+    bottom: 0;
+}
+
+.delete_button{
+    padding: 0;
+    background: 0;
+    border: 0;
+}
