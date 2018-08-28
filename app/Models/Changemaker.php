@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Validator;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class Changemaker extends Model
@@ -24,7 +24,8 @@ class Changemaker extends Model
             "last_name" => "required",
             "first_name" => "required",
             "email" => "required|email|unique:changemakers",
-            "private_link" => "unique:changemakers,private_link",
+            "p_link" => "unique:changemakers,private_link",
+//            "private_link" => "unique:changemakers,private_link",
             "gender" => "required",
             "birth_date" =>"required|date",
             "nationality" => "required",
@@ -104,7 +105,8 @@ class Changemaker extends Model
         $data['profile'] = $user->image;
         $data['cover_letter'] = $_this->cover_letter;
         $data['other_docs'] = $_this->other_docs;
-        $data['private_link'] = $data['private_link'];
+//        $data['private_link'] = $data['private_link'];
+        $data['private_link'] = $data['p_link'];
         $data['user_id'] = $user->id;
         // dd($data);
         $_this->create($data);

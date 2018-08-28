@@ -33,4 +33,18 @@ class UserInterest extends Model
     {
         return self::where('user_id',$user_id)->get();
     }
+    
+    public static function storeUserInterest($data, $id )
+    {
+        
+            $record = new self();
+            $record->user_id = $id;
+            $record->interest_id = $data;
+
+        if (!$record->save()) {
+            return false;
+        }
+
+        return $record;
+    }
 }

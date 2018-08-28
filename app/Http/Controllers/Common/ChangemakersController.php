@@ -48,12 +48,12 @@ class ChangemakersController extends Controller
         $weak_days = ['sun' => 'Sunday', 'mon' => 'Monday', 'tue' => 'Tuesday', 'wed' => 'Wednesday', 'thu' => 'Thursday', 'fri' => 'Friday', 'sat' => 'Saturday'];
         $parent_title = 'Change Makers';
         $page_title = 'Register';
-        return view('site.changemakers.register', compact('countries', 'sectors', 'weak_days', 'parent_title', 'page_title'));
+        $cities = City::all()->pluck('name','country_id', 'id')->toArray();
+        return view('site.changemakers.register', compact('countries', 'cities','sectors', 'weak_days', 'parent_title', 'page_title'));
     }
 
     public function storeChangemaker(Request $request)
     {
-        // dd($request->all());
         DB::beginTransaction();
         $returned_inputs = [];
 
@@ -86,6 +86,7 @@ class ChangemakersController extends Controller
         // store in changemakers table
 
         try {
+            
             $in_changemaker = ChangeMaker::storeChangeMaker($request);
         } catch (Exception $e) {
             DB::rollback();
@@ -101,7 +102,7 @@ class ChangemakersController extends Controller
         try {
             if (isset($request->sector_interestes) && count($request->sector_interestes) >= 1) {
                 foreach ($request->sector_interestes as $interest) {
-                    UserInterest::storeUserInterest($interest, $in_user->id);
+                    $interest = UserInterest::storeUserInterest($interest, $in_user->id);
                 }
             }
 
@@ -120,7 +121,6 @@ class ChangemakersController extends Controller
         // store Work experience
 
         try {
-            //  dd($in_changemaker);
             $user_work = WorkExperience::storeWorkExperience($request, $in_changemaker->id);
         } catch (Exception $e) {
             DB::rollback();

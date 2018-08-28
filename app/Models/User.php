@@ -151,7 +151,8 @@ class User extends Authenticatable
 
     public function validateForm($roles = [], $data = [])
     {
-        $validator = Validator::make($data, $old_roles);
+//        $validator = Validator::make($data, $old_roles);
+        $validator = Validator::make($data, $this->old_roles);
         if ($validator->fails()) {
             $this->errors = $validator->messages();
             return false;

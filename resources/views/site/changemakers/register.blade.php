@@ -395,14 +395,14 @@
         <div class="form-group">
             <div class="col-xs-12 col-md-6">
                 <label for="facebook"> Facebook Url </label>
-                {!! Form::url('facebook',null,['class'=>'form-control','id'=>'facebook']) !!}
-                {{-- <input type="url" name="facebook" class="form-control" id="facebook"> --}}
+                {!! Form::text('facebook',null,['class'=>'form-control','id'=>'facebook']) !!}
+                {{-- <input type="text" name="facebook" class="form-control" id="facebook"> --}}
             </div>
 
             <div class="col-xs-12 col-md-6">
                 <label for="linked_in"> Linkedin Url </label>
-                {!! Form::url('linked_in',null,['class'=>'form-control','id'=>'linked_in']) !!}
-                {{-- <input type="url" name="linked_in" class="form-control" id="linked_in"> --}}
+                {!! Form::text('linked_in',null,['class'=>'form-control','id'=>'linked_in']) !!}
+                {{-- <input type="text" name="linked_in" class="form-control" id="linked_in"> --}}
             </div>
         </div>
 
