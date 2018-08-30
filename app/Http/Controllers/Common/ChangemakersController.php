@@ -121,9 +121,10 @@ class ChangemakersController extends Controller
         // store Work experience
 
         try {
+//            DB::rollback();
+//            dd($in_changemaker);
             $user_work = WorkExperience::storeWorkExperience($request, $in_changemaker->id);
         } catch (Exception $e) {
-            DB::rollback();
         }
 
         // Languages
